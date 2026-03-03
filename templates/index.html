@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fake Audio Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="card">
+        <h1>🎙 Fake Audio<br/>Detector</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="upload-row">
+                <!-- label làm nút chọn file -->
+                <label class="file-label" for="audioInput">
+                    <span class="file-btn-text">Choose File</span>
+                    <span id="fileName" class="file-name">No file chosen</span>
+                </label>
+
+                <!-- input file thật (ẩn) -->
+                <input id="audioInput" type="file" name="audio" accept=".wav,.mp3" required>
+
+                <button type="submit">Analyze</button>
+            </div>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            {{ result }}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        const audioInput = document.getElementById("audioInput");
+        const fileName = document.getElementById("fileName");
+
+        audioInput.addEventListener("change", () => {
+            if (audioInput.files && audioInput.files.length > 0) {
+                fileName.textContent = audioInput.files[0].name;
+            } else {
+                fileName.textContent = "No file chosen";
+            }
+        });
+    </script>
+</body>
+</html>
