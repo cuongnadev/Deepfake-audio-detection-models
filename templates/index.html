@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fake Audio Detector</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
     <div class="background"></div>
 
     <div class="card">
-        <h1>🎙 Fake Audio<br/>Detector</h1>
+        <h1>🎙 Fake Audio<br />Detector</h1>
 
         <form method="post" enctype="multipart/form-data">
             <div class="upload-row">
@@ -28,8 +30,39 @@
         </form>
 
         {% if result %}
-        <div class="result">
-            {{ result }}
+        <div class="result result-{{ result.label }}">
+            <div class="result-header">
+                <span class="result-badge">
+                    {{ "Fake" if result.label == "fake" else "Real" }}
+                </span>
+                <span class="result-title">Prediction Result</span>
+            </div>
+
+            <div class="result-main">
+                <div class="result-label">
+                    {{ result.label|upper }}
+                </div>
+            </div>
+
+            <div class="prob-block">
+                <div class="prob-top">
+                    <span>Fake probability</span>
+                    <strong>{{ "%.2f"|format(result.fake_prob|float * 100) }}%</strong>
+                </div>
+                <div class="progress">
+                    <div class="progress-fill fake-fill" style="width: {{ result.fake_prob|float * 100 }}%;"></div>
+                </div>
+            </div>
+
+            <div class="prob-block">
+                <div class="prob-top">
+                    <span>Real probability</span>
+                    <strong>{{ "%.2f"|format(result.real_prob|float * 100) }}%</strong>
+                </div>
+                <div class="progress">
+                    <div class="progress-fill real-fill" style="width: {{ result.real_prob|float * 100 }}%;"></div>
+                </div>
+            </div>
         </div>
         {% endif %}
     </div>
@@ -47,4 +80,5 @@
         });
     </script>
 </body>
+
 </html>

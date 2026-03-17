@@ -99,8 +99,105 @@ button:hover {
 /* Result */
 .result {
     margin-top: 22px;
-    padding: 16px 18px;
-    border-radius: 12px;
-    background: rgba(255, 157, 63, 0.12);
-    border: 1px solid rgba(255, 157, 63, 0.9);
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: rgba(255, 157, 63, 0.10);
+    border: 1px solid rgba(255, 157, 63, 0.75);
+    text-align: left;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.result-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    background: rgba(255, 157, 63, 0.18);
+    color: #ffb15f;
+    border: 1px solid rgba(255, 157, 63, 0.45);
+}
+
+.result-title {
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.result-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.result-label {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffb15f;
+}
+
+.prob-block + .prob-block {
+    margin-top: 14px;
+}
+
+.prob-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 8px;
+    opacity: 0.95;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.35s ease;
+}
+
+.fake-fill {
+    background: linear-gradient(90deg, #ff9d3f, #ff7b00);
+}
+
+.real-fill {
+    background: linear-gradient(90deg, #56d27c, #2fbf71);
+}
+
+.result-fake {
+    border-color: rgba(255, 157, 63, 0.75);
+    box-shadow: 0 0 20px rgba(255, 157, 63, 0.08) inset;
+}
+
+.result-real {
+    border-color: rgba(86, 210, 124, 0.75);
+    background: rgba(86, 210, 124, 0.08);
+    box-shadow: 0 0 20px rgba(86, 210, 124, 0.08) inset;
+}
+
+.result-real .result-badge {
+    background: rgba(86, 210, 124, 0.16);
+    color: #7be39a;
+    border-color: rgba(86, 210, 124, 0.45);
+}
+
+.result-real .result-label {
+    color: #7be39a;
 }

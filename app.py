@@ -14,14 +14,20 @@ def index():
     if request.method == "POST":
         file = request.files.get("audio")
 
-        if file:
+        if file and file.filename:
             path = os.path.join(UPLOAD_FOLDER, file.filename)
             file.save(path)
 
-            score = infer(path)
-            result = f"Model output score: {score:.4f}"
+            pred = infer(path)
+
+            result = {
+                "label": pred["label"],
+                "real_prob": f"{pred['real_prob']:.4f}",
+                "fake_prob": f"{pred['fake_prob']:.4f}",
+            }
 
     return render_template("index.html", result=result)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
